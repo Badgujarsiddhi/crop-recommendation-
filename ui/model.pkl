@@ -1,0 +1,2 @@
+cd ui
+python train_model.py
