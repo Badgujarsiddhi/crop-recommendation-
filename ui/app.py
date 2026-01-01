@@ -2,6 +2,8 @@ import streamlit as st
 import numpy as np
 import pickle
 import matplotlib.pyplot as plt
+import os
+import pickle
 
 # Page config
 st.set_page_config(page_title="Crop Recommendation System", layout="centered")
@@ -11,8 +13,10 @@ st.title("🌾 Crop Recommendation System")
 st.write("Enter soil and climate details to get the best crop recommendation.")
 
 # Load trained model
-model = pickle.load(open("model.pkl", "rb"))
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "model.pkl")
 
+with open(MODEL_PATH, "rb") as f:
+    model = pickle.load(f)
 # User Inputs
 N = st.number_input("Nitrogen (N)", min_value=0, max_value=200, value=50)
 P = st.number_input("Phosphorus (P)", min_value=0, max_value=200, value=50)
